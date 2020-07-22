@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
@@ -9,30 +8,31 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Campaigns.Queries.GetCampaignByName
+namespace Application.Campaigns.Queries.GetCampaignById
 {
-    public class GetCampaignByNameQueryHandler : IRequestHandler<GetCampaignByNameQuery, Campaign>
+    public class GetCampaignByIdQueryHandler : IRequestHandler<GetCampaignByIdQuery, Campaign>
     {
         private readonly IApplicationDbContext _dbContext;
-        private readonly ILogger<GetCampaignByNameQueryHandler> _logger;
+        private readonly ILogger<GetCampaignByIdQueryHandler> _logger;
 
-        public GetCampaignByNameQueryHandler(IServiceScopeFactory services)
+        public GetCampaignByIdQueryHandler(IServiceScopeFactory services)
         {
             _dbContext = services.CreateScope().ServiceProvider.GetService<IApplicationDbContext>();
-            _logger = services.CreateScope().ServiceProvider.GetService<ILogger<GetCampaignByNameQueryHandler>>();
+            _logger = services.CreateScope().ServiceProvider.GetService<ILogger<GetCampaignByIdQueryHandler>>();
         }
 
-        public async Task<Campaign> Handle(GetCampaignByNameQuery request, CancellationToken cancellationToken)
+        public async Task<Campaign> Handle(GetCampaignByIdQuery request, CancellationToken cancellationToken)
         {
             try 
             {
+                
                 Campaign campaign = await _dbContext.Campaigns
                     .Include(campaign => campaign.Workouts)
                         .ThenInclude(w => w.Exercises)
                     .Include(campaign => campaign.Workouts)
                         .ThenInclude(w => w.CompletedBy)
                     .Include(campaign => campaign.Participants)
-                    .FirstOrDefaultAsync(campaign => campaign.Name == request.Name);
+                    .FirstOrDefaultAsync(campaign => campaign.Id == request.CampaignId);
 
                 return campaign;
             }

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Campaigns.Commands.CreateCampaign
 {
-    public class CreateCampaignCommandHandler : IRequestHandler<CreateCampaignCommand, Guid>
+    public class CreateCampaignCommandHandler : IRequestHandler<CreateCampaignCommand, Campaign>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly ILogger<CreateCampaignCommandHandler> _logger;
@@ -19,20 +19,21 @@ namespace Application.Campaigns.Commands.CreateCampaign
             _dbContext = services.CreateScope().ServiceProvider.GetService<IApplicationDbContext>();
             _logger = services.CreateScope().ServiceProvider.GetService<ILogger<CreateCampaignCommandHandler>>();
         }
-        public async Task<Guid> Handle(CreateCampaignCommand request, CancellationToken cancellationToken)
+        public async Task<Campaign> Handle(CreateCampaignCommand request, CancellationToken cancellationToken)
         {
             try 
             {
                 Campaign campaign = new Campaign
                 {
                     Name = request.Name,
-                    StartDate = request.StartDate
+                    Description = request.Description,
+                    StartDate = request.StartDate,
                 };
 
                 _dbContext.Campaigns.Add(campaign);
                 await _dbContext.SaveChangesAsync(cancellationToken);
 
-                return campaign.Id;
+                return campaign;
             }
             catch (Exception e)
             {

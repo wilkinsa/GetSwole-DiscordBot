@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Application.Campaigns.Commands.AddCampaignParticipant;
+using Application.Campaigns.Queries.GetCampaignById;
 using Application.Common;
 using Application.Common.Interfaces;
 using Application.Workouts.Commands.WorkoutAddCompletedUser;
@@ -44,28 +46,54 @@ namespace DiscordBot.Services
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
         }
 
+        //TODO: REFACTOR
         public async Task ReactionAddedAsync(Cacheable<IUserMessage, UInt64> message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             if(reaction.User.Value.IsBot) return;
 
             var orginalMessage = await message.DownloadAsync();
             var image = orginalMessage.Embeds.Select(e => e.Image).FirstOrDefault().GetValueOrDefault().Url;
-
+            var id = Guid.Parse(orginalMessage.Embeds.Select(e => e.Footer).FirstOrDefault().GetValueOrDefault().Text);
             if(string.IsNullOrWhiteSpace(image)) image = await _memeGenerator.GetWorkoutMeme();
 
             if(reaction.Emote.Name !=  Emojis.white_check_mark) await orginalMessage.RemoveReactionAsync(reaction.Emote, reaction.User.GetValueOrDefault());
 
-            if(reaction.Emote.Name == Emojis.white_check_mark)  
+            var campaign = await _mediator.Send(new GetCampaignByIdQuery(id));
+
+            if(campaign != null)
+            {
+                if(reaction.Emote.Name == Emojis.white_check_mark)  
+                {   
+                    campaign = await _mediator.Send(new AddCampaignParticipantCommand(campaign.Id, reaction.User.Value.Id, reaction.User.Value.Username));
+                    await orginalMessage.ModifyAsync(msg => msg.Embed = MessageTemplates.CampaignCreated(campaign));
+                }
+            }
+
+            if(campaign == null && reaction.Emote.Name == Emojis.white_check_mark)  
             {   
+                _logger.LogDebug("reaction to workout");
                 Workout workout = await _mediator.Send(new WorkoutAddCompletedUserCommand(orginalMessage.Id, reaction.UserId, reaction.User.Value.Username));
                 await orginalMessage.ModifyAsync(msg => msg.Embed = MessageTemplates.WorkoutMessage(workout.Campaign, workout, image));
             }
         }
 
+        //TODO: REFACTOR
         public async Task ReactionRemovedAsync(Cacheable<IUserMessage, UInt64> message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var orginalMessage = await message.DownloadAsync();
             var image = orginalMessage.Embeds.Select(e => e.Image).FirstOrDefault().GetValueOrDefault().Url;
+            var id = Guid.Parse(orginalMessage.Embeds.Select(e => e.Footer).FirstOrDefault().GetValueOrDefault().Text);
+
+            var campaign = await _mediator.Send(new GetCampaignByIdQuery(id));
+
+            if(campaign != null)
+            {
+                if(reaction.Emote.Name == Emojis.white_check_mark)  
+                {   
+                    campaign = await _mediator.Send(new RemoveCampaignParticipantCommand(campaign.Id, reaction.User.Value.Id, reaction.User.Value.Username));
+                    await orginalMessage.ModifyAsync(msg => msg.Embed = MessageTemplates.CampaignCreated(campaign));
+                }
+            }
 
             if(string.IsNullOrWhiteSpace(image)) image = await _memeGenerator.GetWorkoutMeme();
             if(reaction.Emote.Name == Emojis.white_check_mark)

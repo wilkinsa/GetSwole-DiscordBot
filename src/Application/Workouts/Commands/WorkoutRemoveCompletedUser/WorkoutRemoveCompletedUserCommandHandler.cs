@@ -29,6 +29,7 @@ namespace Application.Workouts.Commands.WorkoutRemoveCompletedUser
                 Workout workout = await _dbContext.Workouts
                     .Include(w => w.CompletedBy)
                     .Include(w => w.Campaign)
+                        .ThenInclude(c => c.Participants)
                     .Include(w => w.Exercises)
                     .FirstOrDefaultAsync(w => w.PostId == request.PostId);
 
