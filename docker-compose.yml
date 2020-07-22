@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  discord-bot:
+    image: discord-bot
+    build:
+      context: .
+      dockerfile: src/DiscordBot/Dockerfile
+    restart: unless-stopped
+    env_file: src/DiscordBot/.env
+    depends_on:
+      - "swole-db"
+  swole-db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes: 
+      - ./volumes/mysql-data:/var/lib/mysql
+  swole-adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 5566:8080
+  swole-seq:
+    image: datalust/seq:latest
+    ports:
+      - "5331:80"
+    environment: 
+      ACCEPT_EULA: Y
+    restart: unless-stopped
+    volumes: 
+      - ./volumes/seq-data:/data
