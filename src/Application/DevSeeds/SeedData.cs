@@ -16,7 +16,9 @@ namespace Application.DevSeeds
                 Id = Guid.NewGuid(),
                 StartDate = DateTimeOffset.Parse("07/24/2020"),
                 Name = "30 Day Challenge",
-                Description = @"Yooo, the moves will be below! If you have any questions just let me know. If anything bothers throughout the course of the challenge, let me know! Everything can be adjusted. I'll have some more details on the check ins we'll do in discord come Friday before stream!
+                Description = $@"<#{Environment.GetEnvironmentVariable("CHANNELID")}> Hit the check mark reaction below to be added as a participant and you will be notified when each days workout is posted.
+                
+Yooo, the moves will be below! If you have any questions just let me know. If anything bothers throughout the course of the challenge, let me know! Everything can be adjusted. I'll have some more details on the check ins we'll do in discord come Friday before stream!
 
 https://www.youtube.com/watch?v=wy-wJUpwr2I - Back Ext.
 
