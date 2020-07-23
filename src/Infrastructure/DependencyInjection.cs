@@ -14,7 +14,7 @@ namespace Infrastructure
         {
             services.AddDbContext<ApplicationDbContext>(options => 
                 options
-                    .UseMySql("Server=swole-db;Database=GetSwole;User=root;Password=example", mySqlOptions => mySqlOptions
+                    .UseMySql("Server=swole-db;Database=GetSwole;User=root;Password=aeW3#0yJSN1P", mySqlOptions => mySqlOptions
                         .ServerVersion(new Version(8, 0, 20), ServerType.MySql)
                     .MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 

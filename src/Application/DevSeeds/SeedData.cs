@@ -14,8 +14,17 @@ namespace Application.DevSeeds
             context.Campaigns.Add(new Campaign
             {
                 Id = Guid.NewGuid(),
-                StartDate = DateTimeOffset.Now.AddDays(2),
-                Name = "Test",
+                StartDate = DateTimeOffset.Parse("07/24/2020"),
+                Name = "30 Day Challenge",
+                Description = @"Yooo, the moves will be below! If you have any questions just let me know. If anything bothers throughout the course of the challenge, let me know! Everything can be adjusted. I'll have some more details on the check ins we'll do in discord come Friday before stream!
+
+https://www.youtube.com/watch?v=wy-wJUpwr2I - Back Ext.
+
+https://www.youtube.com/watch?v=IODxDxX7oi4 - Push ups
+
+https://www.youtube.com/watch?v=RClKKQqsvXA - Squat
+
+https://www.youtube.com/watch?v=F-nQ_KJgfCY - Plank",
                 Workouts = Workouts.GetWorkoutList()
             });
             context.SaveChangesAsync(CancellationToken.None);

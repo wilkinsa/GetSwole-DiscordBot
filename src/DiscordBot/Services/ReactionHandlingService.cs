@@ -52,6 +52,9 @@ namespace DiscordBot.Services
             if(reaction.User.Value.IsBot) return;
 
             var orginalMessage = await message.DownloadAsync();
+
+            if(!orginalMessage.Author.IsBot) return;
+
             var image = orginalMessage.Embeds.Select(e => e.Image).FirstOrDefault().GetValueOrDefault().Url;
             var id = Guid.Parse(orginalMessage.Embeds.Select(e => e.Footer).FirstOrDefault().GetValueOrDefault().Text);
             if(string.IsNullOrWhiteSpace(image)) image = await _memeGenerator.GetWorkoutMeme();
@@ -81,6 +84,7 @@ namespace DiscordBot.Services
         public async Task ReactionRemovedAsync(Cacheable<IUserMessage, UInt64> message, ISocketMessageChannel channel, SocketReaction reaction)
         {
             var orginalMessage = await message.DownloadAsync();
+            if(!orginalMessage.Author.IsBot) return;
             var image = orginalMessage.Embeds.Select(e => e.Image).FirstOrDefault().GetValueOrDefault().Url;
             var id = Guid.Parse(orginalMessage.Embeds.Select(e => e.Footer).FirstOrDefault().GetValueOrDefault().Text);
 

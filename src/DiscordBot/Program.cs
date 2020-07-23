@@ -55,6 +55,7 @@ namespace DiscordBot
                 var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
                 await serviceProvider.GetRequiredService<CommandHandlingService>().InitializeAsync();
                 await serviceProvider.GetRequiredService<ReactionHandlingService>().InitializeAsync();
+                serviceProvider.GetRequiredService<WorkoutPostingService>().Start();
 
                 await context.Database.MigrateAsync();
                 
@@ -62,7 +63,7 @@ namespace DiscordBot
                 {
                     SeedData.GetSeedCampaign(context);
                 }
-
+                
                 await Task.Delay(Timeout.Infinite);
             }
             catch (Exception e)
@@ -82,6 +83,7 @@ namespace DiscordBot
             services.AddSingleton<CommandService>();
             services.AddSingleton<CommandHandlingService>();
             services.AddSingleton<ReactionHandlingService>();
+            services.AddSingleton<WorkoutPostingService>();
             services.AddSingleton<HttpClient>();
             services.AddInfrastructure();
             services.AddApplication();

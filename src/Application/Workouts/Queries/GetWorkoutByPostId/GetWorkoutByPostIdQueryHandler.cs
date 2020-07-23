@@ -26,6 +26,7 @@ namespace Application.Workouts.Queries.GetWorkoutByPostId
             {
                 return await _dbContext.Workouts
                     .Include(w => w.Campaign)
+                        .ThenInclude(c => c.Participants)
                     .Include(w => w.Exercises)
                     .FirstOrDefaultAsync(w => w.PostId == request.PostId);
             }
