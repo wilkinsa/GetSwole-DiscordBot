@@ -6,6 +6,7 @@ using Application.Campaigns.Commands.CreateCampaign;
 using Application.Campaigns.Queries.GetCampaignByName;
 using Application.Common;
 using Application.Common.Interfaces;
+using Application.Workouts;
 using Application.Workouts.Commands.MarkWorkoutAsPosted;
 using Discord;
 using Discord.Commands;
@@ -119,6 +120,15 @@ namespace DiscordBot.Modules
             var embededMessage = MessageTemplates.CampaignCreated(campaign);
             var message = await ReplyAsync("", false, embededMessage);
             await message.AddReactionAsync(new Emoji(Emojis.white_check_mark));
+        }
+
+        [Command("quick-fix")]
+        [RequireUserPermission(GuildPermission.Administrator)]
+        public async Task QuickFix([Remainder] string data)
+        {
+            var updates = await _mediator.Send(new QuickFix());
+
+            await ReplyAsync($"Updated {updates} workouts");
         }
     }
 }

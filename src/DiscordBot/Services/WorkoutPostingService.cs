@@ -57,6 +57,5 @@ namespace DiscordBot.Services
                 await message.AddReactionAsync(new Emoji(Emojis.white_check_mark));
             }
         }
-
     }
 }
