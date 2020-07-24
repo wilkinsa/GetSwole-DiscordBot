@@ -121,5 +121,18 @@ namespace DiscordBot.Modules
             var message = await ReplyAsync("", false, embededMessage);
             await message.AddReactionAsync(new Emoji(Emojis.white_check_mark));
         }
+
+        [Command("quick-fix")]
+        [RequireContext(ContextType.DM)]
+        public async Task QuickFix([Remainder] string data)
+        {
+            var botAdmin = Convert.ToUInt64(Environment.GetEnvironmentVariable("BOT_ADMIN"));
+
+            if(Context.User.Id != botAdmin) return;
+
+            var updates = await _mediator.Send(new QuickFix(Convert.ToInt16(data)));
+
+            await ReplyAsync($"Updated workout date to: {updates}");
+        }
     }
 }
