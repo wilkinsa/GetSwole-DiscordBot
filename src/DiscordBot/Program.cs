@@ -64,8 +64,7 @@ namespace DiscordBot
                     SeedData.GetSeedCampaign(context);
                 }
                 
-                await client.GetGuild(Convert.ToUInt64(Environment.GetEnvironmentVariable("GUILDID")))
-                    .GetTextChannel(Convert.ToUInt64(Environment.GetEnvironmentVariable("CHANNELID")))
+                await client.GetUser(Convert.ToUInt64(Environment.GetEnvironmentVariable("BOT_ADMIN")))
                     .SendMessageAsync("Ready for work!");
 
                 await Task.Delay(Timeout.Infinite);
