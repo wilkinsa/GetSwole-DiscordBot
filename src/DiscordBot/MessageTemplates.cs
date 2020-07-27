@@ -16,7 +16,7 @@ namespace DiscordBot
 
             builder.WithColor(166, 82, 187);
             builder.WithTitle($"Campaign: {campaign.Name}");
-            builder.WithDescription($"Participants: {string.Join(", ", campaign.Participants?.Select(p => $"<@!{p.UserId}>"))}");
+            builder.WithDescription($"Participants: {string.Join(", ", campaign.Participants?.Select(p => $"<@{p.UserId}>"))}");
             builder.AddField("Workout", workout.Name, true);
             builder.AddField("Date", workout.WorkoutDate.Date.ToShortDateString(), true);
             builder.AddField("Completed by", $"{(workout.CompletedBy.Any() ? string.Join(", ", workout.CompletedBy.Select(u => u.UserName)) : "none")}");
