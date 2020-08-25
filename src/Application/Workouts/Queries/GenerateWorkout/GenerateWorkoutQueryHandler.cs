@@ -29,8 +29,8 @@ public class GenerateWorkoutQueryHandler : IRequestHandler<GenerateWorkoutQuery,
                 _dbContext.ExerciseOptions.AddRange(new List<ExerciseOption>
                 {
                     new ExerciseOption {Name = "Pushups", Value = "reps", MuscleGroup = "Chest" },
-                    new ExerciseOption {Name = "Squats", Value = "reps", MuscleGroup = "Legs" },
-                    new ExerciseOption {Name = "Lunges", Value = "reps", MuscleGroup = "Legs" },
+                    new ExerciseOption {Name = "Squats", Value = "reps", MuscleGroup = "Leg" },
+                    new ExerciseOption {Name = "Lunges", Value = "reps", MuscleGroup = "Leg" },
                     new ExerciseOption {Name = "Rows", Value = "reps", MuscleGroup = "Back" },
                     new ExerciseOption {Name = "Plank", Value = "seconds", MuscleGroup = "Core" },
                     new ExerciseOption {Name = "Sit Ups", Value = "reps", MuscleGroup = "Core" },
