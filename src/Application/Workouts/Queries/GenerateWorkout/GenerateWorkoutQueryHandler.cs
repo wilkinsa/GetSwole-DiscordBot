@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Application.Common.Interfaces;
+using Domain.Entities;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+public class GenerateWorkoutQueryHandler : IRequestHandler<GenerateWorkoutQuery, Workout>
+{
+    private readonly IApplicationDbContext _dbContext;
+    private readonly ILogger<GenerateWorkoutQueryHandler> _logger;
+
+    public GenerateWorkoutQueryHandler(IServiceScopeFactory services)
+    {
+        _dbContext = services.CreateScope().ServiceProvider.GetService<IApplicationDbContext>();
+        _logger = services.CreateScope().ServiceProvider.GetService<ILogger<GenerateWorkoutQueryHandler>>();
+    }
+
+    public async Task<Workout> Handle(GenerateWorkoutQuery request, CancellationToken cancellationToken)
+    {
+        try
+        {
+            Random rnd = new Random();
+            var excercises = await _dbContext.ExerciseOptions.ToListAsync();
+            var ChestWorkout = excercises.Where(e => e.MuscleGroup == "Chest").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Chest").Count())];
+            var BackWorkout = excercises.Where(e => e.MuscleGroup == "Back").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Back").Count())];
+            var LegWorkout = excercises.Where(e => e.MuscleGroup == "Leg").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Leg").Count())];
+            var CoreWorkout = excercises.Where(e => e.MuscleGroup == "Core").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Core").Count())];
+
+            var Workout = new Workout
+            {
+                Name = "Daily Workout",
+                WorkoutDate = DateTimeOffset.Now.Date,
+                Exercises = new List<Exercise>
+                {
+                   new Exercise 
+                   {
+                       Name = ChestWorkout.Name,
+                       Value = $"{rnd.Next(20, 50)} {ChestWorkout.Value}",
+                       MuscleGroup = ChestWorkout.MuscleGroup
+                   },
+                   new Exercise
+                   {
+                       Name = BackWorkout.Name,
+                       Value = $"{rnd.Next(20, 50)} {BackWorkout.Value}",
+                       MuscleGroup = BackWorkout.MuscleGroup
+                   },
+                   new Exercise
+                   {
+                       Name = LegWorkout.Name,
+                       Value = $"{rnd.Next(20, 50)} {LegWorkout.Value}",
+                       MuscleGroup = LegWorkout.MuscleGroup
+                   },
+                   new Exercise
+                   {
+                       Name = CoreWorkout.Name,
+                       Value = $"{rnd.Next(20, 50)} {CoreWorkout.Value}",
+                       MuscleGroup = CoreWorkout.MuscleGroup
+                   }
+                }
+            };
+
+            _dbContext.Workouts.Add(Workout);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return Workout;
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, e.Message);
+            throw;
+        }
+    }
+}

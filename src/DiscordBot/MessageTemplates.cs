@@ -1,9 +1,7 @@
-using System;
 using System.Linq;
 using Discord;
 using Domain.Entities;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+
 
 namespace DiscordBot
 {
@@ -17,6 +15,26 @@ namespace DiscordBot
             builder.WithColor(166, 82, 187);
             builder.WithTitle($"Campaign: {campaign.Name}");
             builder.WithDescription($"Participants: {string.Join(", ", campaign.Participants?.Select(p => $"<@!{p.UserId}>"))}");
+            builder.AddField("Workout", workout.Name, true);
+            builder.AddField("Date", workout.WorkoutDate.Date.ToShortDateString(), true);
+            builder.AddField("Completed by", $"{(workout.CompletedBy.Any() ? string.Join(", ", workout.CompletedBy.Select(u => u.UserName)) : "none")}");
+            builder.WithImageUrl(image);
+            foreach (Exercise ex in workout.Exercises)
+            {
+                builder.AddField(ex.Name, ex.Value, false);
+            }
+            builder.WithFooter($"{workout.Id}");
+
+            return builder.Build();
+        }
+
+        public static Embed WorkoutMessage(Workout workout, string image)
+        {
+            EmbedBuilder builder = new EmbedBuilder();
+            EmbedFooterBuilder footer = new EmbedFooterBuilder();
+
+            builder.WithColor(166, 82, 187);
+            builder.WithTitle($"Daily Auto Workout");
             builder.AddField("Workout", workout.Name, true);
             builder.AddField("Date", workout.WorkoutDate.Date.ToShortDateString(), true);
             builder.AddField("Completed by", $"{(workout.CompletedBy.Any() ? string.Join(", ", workout.CompletedBy.Select(u => u.UserName)) : "none")}");

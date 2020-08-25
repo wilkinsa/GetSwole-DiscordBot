@@ -10,6 +10,7 @@ namespace Application.Common.Interfaces
         DbSet<Campaign> Campaigns { get; set; }
         DbSet<Workout> Workouts { get; set; }
         DbSet<Exercise> Exercises { get; set; }
+        DbSet<ExerciseOption> ExerciseOptions { get; set; }
         DbSet<User> Users { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);

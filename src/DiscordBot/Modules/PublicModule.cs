@@ -134,5 +134,20 @@ namespace DiscordBot.Modules
 
             await ReplyAsync($"Updated workout date to: {updates}");
         }
+
+        [Command("workout")]
+        [RequireUserPermission(GuildPermission.Administrator)]
+        public async Task GenerateWorkout([Remainder] string data)
+        {
+            var workout = await _mediator.Send(new GenerateWorkoutQuery());
+            var image = await _memeGenerator.GetWorkoutMeme();
+                var embededMessage = MessageTemplates.WorkoutMessage(workout, image);
+
+                var message = await ReplyAsync("", false, embededMessage);
+
+                await _mediator.Send(new MarkWorkoutAsPostedCommand(workout.Id, message.Id));
+
+                await message.AddReactionAsync(new Emoji(Emojis.white_check_mark));
+        }
     }
 }
