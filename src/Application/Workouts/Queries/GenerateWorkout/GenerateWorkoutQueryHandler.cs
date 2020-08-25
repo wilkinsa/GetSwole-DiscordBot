@@ -25,6 +25,19 @@ public class GenerateWorkoutQueryHandler : IRequestHandler<GenerateWorkoutQuery,
     {
         try
         {
+            if(!_dbContext.ExerciseOptions.Any()) {
+                _dbContext.ExerciseOptions.AddRange(new List<ExerciseOption>
+                {
+                    new ExerciseOption {Name = "Pushups", Value = "reps", MuscleGroup = "Chest" },
+                    new ExerciseOption {Name = "Squats", Value = "reps", MuscleGroup = "Legs" },
+                    new ExerciseOption {Name = "Lunges", Value = "reps", MuscleGroup = "Legs" },
+                    new ExerciseOption {Name = "Rows", Value = "reps", MuscleGroup = "Back" },
+                    new ExerciseOption {Name = "Plank", Value = "seconds", MuscleGroup = "Core" },
+                    new ExerciseOption {Name = "Sit Ups", Value = "reps", MuscleGroup = "Core" },
+                    new ExerciseOption {Name = "Incline Pushups", Value = "reps", MuscleGroup = "Chest" },
+                });
+                await _dbContext.SaveChangesAsync(cancellationToken);
+            }
             Random rnd = new Random();
             var excercises = await _dbContext.ExerciseOptions.ToListAsync();
             var ChestWorkout = excercises.Where(e => e.MuscleGroup == "Chest").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Chest").Count())];
