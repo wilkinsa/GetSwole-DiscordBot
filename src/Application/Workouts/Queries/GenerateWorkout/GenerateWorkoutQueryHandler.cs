@@ -29,8 +29,8 @@ public class GenerateWorkoutQueryHandler : IRequestHandler<GenerateWorkoutQuery,
                 _dbContext.ExerciseOptions.AddRange(new List<ExerciseOption>
                 {
                     new ExerciseOption {Name = "Pushups", Value = "reps", MuscleGroup = "Chest" },
-                    new ExerciseOption {Name = "Squats", Value = "reps", MuscleGroup = "Leg" },
-                    new ExerciseOption {Name = "Lunges", Value = "reps", MuscleGroup = "Leg" },
+                    new ExerciseOption {Name = "Squats", Value = "reps", MuscleGroup = "Legs" },
+                    new ExerciseOption {Name = "Lunges", Value = "reps", MuscleGroup = "Legs" },
                     new ExerciseOption {Name = "Rows", Value = "reps", MuscleGroup = "Back" },
                     new ExerciseOption {Name = "Plank", Value = "seconds", MuscleGroup = "Core" },
                     new ExerciseOption {Name = "Sit Ups", Value = "reps", MuscleGroup = "Core" },
@@ -42,7 +42,7 @@ public class GenerateWorkoutQueryHandler : IRequestHandler<GenerateWorkoutQuery,
             var excercises = await _dbContext.ExerciseOptions.ToListAsync();
             var ChestWorkout = excercises.Where(e => e.MuscleGroup == "Chest").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Chest").Count()) - 1];
             var BackWorkout = excercises.Where(e => e.MuscleGroup == "Back").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Back").Count()) - 1];
-            var LegWorkout = excercises.Where(e => e.MuscleGroup == "Leg").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Leg").Count()) - 1];
+            var LegWorkout = excercises.Where(e => e.MuscleGroup == "Legs").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Legs").Count()) - 1];
             var CoreWorkout = excercises.Where(e => e.MuscleGroup == "Core").ToArray()[rnd.Next(excercises.Where(e => e.MuscleGroup == "Core").Count()) - 1];
 
             var Workout = new Workout
