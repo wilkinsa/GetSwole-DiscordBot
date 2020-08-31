@@ -59,7 +59,7 @@ namespace DiscordBot
 
                 await context.Database.MigrateAsync();
                 
-                if(!context.Campaigns.Any()) 
+                if(!context.Campaigns.Any(c => c.Name == "30 Day Ab Challenge"))
                 {
                     SeedData.GetSeedCampaign(context);
                 }

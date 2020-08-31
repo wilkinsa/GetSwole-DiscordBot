@@ -34,7 +34,7 @@ namespace Application
         
         private static List<Workout> GetList() 
         {
-            DateTimeOffset startDate = DateTimeOffset.Parse("07/24/2020");
+            DateTimeOffset startDate = DateTimeOffset.Parse("08/31/2020").AddHours(3);
             return new List<Workout> 
             {
                 new Workout 
@@ -45,27 +45,55 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "20"
+                            Name = "Sit ups",
+                            Value = "10"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "20"
+                            Name = "Heel taps",
+                            Value = "10"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "20"
+                            Name = "Flutter kicks",
+                            Value = "10"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "30 seconds"
+                            Name = "Side plank",
+                            Value = "20 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
+                {
+                    Name = "Day 2",
+                    WorkoutDate = startDate.AddDays(1),
+                    Exercises = new List<Exercise>
+                    {
+                        new Exercise
+                        {
+                            Name = "Sit ups",
+                            Value = "10"
+                        },
+                        new Exercise
+                        {
+                            Name = "Heel taps",
+                            Value = "10"
+                        },
+                        new Exercise
+                        {
+                            Name = "Flutter kicks",
+                            Value = "10"
+                        },
+                        new Exercise
+                        {
+                            Name = "Side plank",
+                            Value = "20 seconds"
+                        }
+                    },
+                },
+                new Workout
                 {
                     Name = "Day 3",
                     WorkoutDate = startDate.AddDays(2),
@@ -73,27 +101,27 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "20"
+                            Name = "Sit ups",
+                            Value = "15"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "20"
+                            Name = "Heel taps",
+                            Value = "15"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "20"
+                            Name = "Flutter kicks",
+                            Value = "15"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "30 seconds"
+                            Name = "Side plank",
+                            Value = "20 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
                 {
                     Name = "Day 5",
                     WorkoutDate = startDate.AddDays(4),
@@ -101,27 +129,55 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "25"
+                            Name = "Sit ups",
+                            Value = "15"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "25"
+                            Name = "Heel taps",
+                            Value = "15"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "25"
+                            Name = "Flutter kicks",
+                            Value = "15"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "35 seconds"
+                            Name = "Side plank",
+                            Value = "30 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
+                {
+                    Name = "Day 6",
+                    WorkoutDate = startDate.AddDays(5),
+                    Exercises = new List<Exercise>
+                    {
+                        new Exercise
+                        {
+                            Name = "Sit ups",
+                            Value = "20"
+                        },
+                        new Exercise
+                        {
+                            Name = "Heel taps",
+                            Value = "20"
+                        },
+                        new Exercise
+                        {
+                            Name = "Flutter kicks",
+                            Value = "20"
+                        },
+                        new Exercise
+                        {
+                            Name = "Side plank",
+                            Value = "20 seconds"
+                        }
+                    },
+                },
+                new Workout
                 {
                     Name = "Day 7",
                     WorkoutDate = startDate.AddDays(6),
@@ -129,27 +185,27 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "25"
+                            Name = "Sit ups",
+                            Value = "20"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "25"
+                            Name = "Heel taps",
+                            Value = "20"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "25"
+                            Name = "Flutter kicks",
+                            Value = "20"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "35 seconds"
+                            Name = "Side plank",
+                            Value = "30 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
                 {
                     Name = "Day 9",
                     WorkoutDate = startDate.AddDays(8),
@@ -157,27 +213,55 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "30"
+                            Name = "Sit ups",
+                            Value = "25"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "30"
+                            Name = "Heel taps",
+                            Value = "25"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "30"
+                            Name = "Flutter kicks",
+                            Value = "25"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "40 seconds"
+                            Name = "Side plank",
+                            Value = "35 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
+                {
+                    Name = "Day 10",
+                    WorkoutDate = startDate.AddDays(9),
+                    Exercises = new List<Exercise>
+                    {
+                        new Exercise
+                        {
+                            Name = "Sit ups",
+                            Value = "25"
+                        },
+                        new Exercise
+                        {
+                            Name = "Heel taps",
+                            Value = "25"
+                        },
+                        new Exercise
+                        {
+                            Name = "Flutter kicks",
+                            Value = "25"
+                        },
+                        new Exercise
+                        {
+                            Name = "Side plank",
+                            Value = "35 seconds"
+                        }
+                    },
+                },
+                new Workout
                 {
                     Name = "Day 11",
                     WorkoutDate = startDate.AddDays(10),
@@ -185,27 +269,27 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
+                            Name = "Sit ups",
                             Value = "30"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
+                            Name = "Heel taps",
                             Value = "30"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
+                            Name = "Flutter kicks",
                             Value = "30"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "40 seconds"
+                            Name = "Side plank",
+                            Value = "35 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
                 {
                     Name = "Day 13",
                     WorkoutDate = startDate.AddDays(12),
@@ -213,27 +297,55 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "35"
+                            Name = "Sit ups",
+                            Value = "30"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "35"
+                            Name = "Heel taps",
+                            Value = "30"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "35"
+                            Name = "Flutter kicks",
+                            Value = "30"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "45 seconds"
+                            Name = "Side plank",
+                            Value = "40 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
+                {
+                    Name = "Day 14",
+                    WorkoutDate = startDate.AddDays(13),
+                    Exercises = new List<Exercise>
+                    {
+                        new Exercise
+                        {
+                            Name = "Sit ups",
+                            Value = "35"
+                        },
+                        new Exercise
+                        {
+                            Name = "Heel taps",
+                            Value = "35"
+                        },
+                        new Exercise
+                        {
+                            Name = "Flutter kicks",
+                            Value = "35"
+                        },
+                        new Exercise
+                        {
+                            Name = "Side plank",
+                            Value = "40 seconds"
+                        }
+                    },
+                },
+                new Workout
                 {
                     Name = "Day 15",
                     WorkoutDate = startDate.AddDays(14),
@@ -241,27 +353,27 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
+                            Name = "Sit ups",
                             Value = "35"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
+                            Name = "Heel taps",
                             Value = "35"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
+                            Name = "Flutter kicks",
                             Value = "35"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "45 seconds"
+                            Name = "Side plank",
+                            Value = "40 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
                 {
                     Name = "Day 17",
                     WorkoutDate = startDate.AddDays(16),
@@ -269,27 +381,55 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
+                            Name = "Sit ups",
                             Value = "40"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
+                            Name = "Heel taps",
                             Value = "40"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
+                            Name = "Flutter kicks",
                             Value = "40"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "50 seconds"
+                            Name = "Side plank",
+                            Value = "45 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
+                {
+                    Name = "Day 18",
+                    WorkoutDate = startDate.AddDays(17),
+                    Exercises = new List<Exercise>
+                    {
+                        new Exercise
+                        {
+                            Name = "Sit ups",
+                            Value = "40"
+                        },
+                        new Exercise
+                        {
+                            Name = "Heel taps",
+                            Value = "40"
+                        },
+                        new Exercise
+                        {
+                            Name = "Flutter kicks",
+                            Value = "40"
+                        },
+                        new Exercise
+                        {
+                            Name = "Side plank",
+                            Value = "45 seconds"
+                        }
+                    },
+                },
+                new Workout
                 {
                     Name = "Day 19",
                     WorkoutDate = startDate.AddDays(18),
@@ -297,27 +437,27 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "40"
+                            Name = "Sit ups",
+                            Value = "50"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "40"
+                            Name = "Heel taps",
+                            Value = "50"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "40"
+                            Name = "Flutter kicks",
+                            Value = "50"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "50 seconds"
+                            Name = "Side plank",
+                            Value = "45 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
                 {
                     Name = "Day 21",
                     WorkoutDate = startDate.AddDays(20),
@@ -325,27 +465,55 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "45"
+                            Name = "Sit ups",
+                            Value = "50"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "45"
+                            Name = "Heel taps",
+                            Value = "50"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "45"
+                            Name = "Flutter kicks",
+                            Value = "50"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "55 seconds"
+                            Name = "Side plank",
+                            Value = "50 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
+                {
+                    Name = "Day 22",
+                    WorkoutDate = startDate.AddDays(21),
+                    Exercises = new List<Exercise>
+                    {
+                        new Exercise
+                        {
+                            Name = "Sit ups",
+                            Value = "55"
+                        },
+                        new Exercise
+                        {
+                            Name = "Heel taps",
+                            Value = "55"
+                        },
+                        new Exercise
+                        {
+                            Name = "Flutter kicks",
+                            Value = "55"
+                        },
+                        new Exercise
+                        {
+                            Name = "Side plank",
+                            Value = "50 seconds"
+                        }
+                    },
+                },
+                new Workout
                 {
                     Name = "Day 23",
                     WorkoutDate = startDate.AddDays(22),
@@ -353,27 +521,27 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "45"
+                            Name = "Sit ups",
+                            Value = "60"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "45"
+                            Name = "Heel taps",
+                            Value = "60"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "45"
+                            Name = "Flutter kicks",
+                            Value = "60"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "55 seconds"
+                            Name = "Side plank",
+                            Value = "50 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
                 {
                     Name = "Day 25",
                     WorkoutDate = startDate.AddDays(24),
@@ -381,27 +549,55 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "50"
+                            Name = "Sit ups",
+                            Value = "60"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "50"
+                            Name = "Heel taps",
+                            Value = "60"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "50"
+                            Name = "Flutter kicks",
+                            Value = "60"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "60 seconds"
+                            Name = "Side plank",
+                            Value = "55 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
+                {
+                    Name = "Day 26",
+                    WorkoutDate = startDate.AddDays(25),
+                    Exercises = new List<Exercise>
+                    {
+                        new Exercise
+                        {
+                            Name = "Sit ups",
+                            Value = "65"
+                        },
+                        new Exercise
+                        {
+                            Name = "Heel taps",
+                            Value = "65"
+                        },
+                        new Exercise
+                        {
+                            Name = "Flutter kicks",
+                            Value = "65"
+                        },
+                        new Exercise
+                        {
+                            Name = "Side plank",
+                            Value = "55 seconds"
+                        }
+                    },
+                },
+                new Workout
                 {
                     Name = "Day 27",
                     WorkoutDate = startDate.AddDays(26),
@@ -409,27 +605,27 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "50"
+                            Name = "Sit ups",
+                            Value = "70"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "50"
+                            Name = "Heel taps",
+                            Value = "70"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "50"
+                            Name = "Flutter kicks",
+                            Value = "70"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
-                            Value = "60 seconds"
+                            Name = "Side plank",
+                            Value = "55 seconds"
                         }
                     },
                 },
-                new Workout 
+                new Workout
                 {
                     Name = "Day 29",
                     WorkoutDate = startDate.AddDays(28),
@@ -437,26 +633,54 @@ namespace Application
                     {
                         new Exercise
                         {
-                            Name = "Squats",
-                            Value = "60"
+                            Name = "Sit ups",
+                            Value = "80"
                         },
                         new Exercise
                         {
-                            Name = "Push ups",
-                            Value = "60"
+                            Name = "Heel taps",
+                            Value = "80"
                         },
                         new Exercise
                         {
-                            Name = "Back ext. rows",
-                            Value = "60"
+                            Name = "Flutter kicks",
+                            Value = "80"
                         },
                         new Exercise
                         {
-                            Name = "Plank",
+                            Name = "Side plank",
+                            Value = "60 seconds"
+                        }
+                    },
+                },
+                new Workout
+                {
+                    Name = "Day 30",
+                    WorkoutDate = startDate.AddDays(29),
+                    Exercises = new List<Exercise>
+                    {
+                        new Exercise
+                        {
+                            Name = "Sit ups",
+                            Value = "90"
+                        },
+                        new Exercise
+                        {
+                            Name = "Heel taps",
+                            Value = "90"
+                        },
+                        new Exercise
+                        {
+                            Name = "Flutter kicks",
+                            Value = "90"
+                        },
+                        new Exercise
+                        {
+                            Name = "Side plank",
                             Value = "70 seconds"
                         }
                     },
-                }
+                },
             };
         }
     }
