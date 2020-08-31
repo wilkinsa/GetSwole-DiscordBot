@@ -60,7 +60,7 @@ namespace DiscordBot.Services
             if(string.IsNullOrWhiteSpace(image)) image = await _memeGenerator.GetWorkoutMeme();
 
             await _discord.GetUser(Convert.ToUInt64(Environment.GetEnvironmentVariable("BOT_ADMIN")))
-                    .SendMessageAsync($"reaction was: {reaction.Emote.Name}");
+                    .SendMessageAsync($"reaction was: ```{reaction.Emote.Name}```");
 
             if(reaction.Emote.Name !=  Emojis.white_check_mark || reaction.Emote.Name !=  Emojis.droplet) await orginalMessage.RemoveReactionAsync(reaction.Emote, reaction.User.GetValueOrDefault());
 
