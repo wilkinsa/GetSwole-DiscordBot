@@ -130,7 +130,7 @@ namespace DiscordBot.Modules
 
             if(Context.User.Id != botAdmin) return;
 
-            var updates = await _mediator.Send(new QuickFix(Convert.ToInt16(data)));
+            var updates = await _mediator.Send(new QuickFix());
 
             await ReplyAsync($"Updated workout date to: {updates}");
         }

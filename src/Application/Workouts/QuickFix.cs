@@ -12,11 +12,7 @@ namespace Application.Workouts
 {
     public class QuickFix : IRequest<DateTimeOffset?>
     {
-        public int Hours { get; set; }
-        public QuickFix(int hours)
-        {
-            Hours = hours;
-        }
+        
     }
 
     public class QuickFixHandler : IRequestHandler<QuickFix, DateTimeOffset?>
@@ -31,18 +27,13 @@ namespace Application.Workouts
         }
         public async Task<DateTimeOffset?> Handle(QuickFix request, CancellationToken cancellationToken)
         {
-            var Workouts = await _dbContext.Workouts.ToListAsync();
+            var campaign = await _dbContext.Campaigns.FirstOrDefaultAsync(c => c.Name == "30 Day Ab Challenge");
 
-            foreach(var workout in Workouts)
-            {
-                workout.Posted = false;
-                workout.PostId = 0;
-                workout.WorkoutDate = workout.WorkoutDate.AddHours(request.Hours);
-            }
+            campaign.StartDate = DateTimeOffset.Parse("08/31/2020");
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            return Workouts.FirstOrDefault()?.WorkoutDate;
+            return campaign.StartDate;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Application.DevSeeds
             context.Campaigns.Add(new Campaign
             {
                 Id = Guid.NewGuid(),
-                StartDate = DateTimeOffset.Parse("07/24/2020"),
+                StartDate = DateTimeOffset.Parse("08/31/2020"),
                 Name = "30 Day Ab Challenge",
                 Description = $@"<#{Environment.GetEnvironmentVariable("CHANNELID")}> Hit the check mark reaction below to be added as a participant and you will be notified when each days workout is posted.
                 
