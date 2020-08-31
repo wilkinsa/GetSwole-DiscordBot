@@ -59,7 +59,7 @@ namespace DiscordBot.Services
             var id = Guid.Parse(orginalMessage.Embeds.Select(e => e.Footer).FirstOrDefault().GetValueOrDefault().Text);
             if(string.IsNullOrWhiteSpace(image)) image = await _memeGenerator.GetWorkoutMeme();
 
-            if(reaction.Emote.Name !=  Emojis.white_check_mark || reaction.Emote.Name !=  Emojis.droplet) await orginalMessage.RemoveReactionAsync(reaction.Emote, reaction.User.GetValueOrDefault());
+            if(reaction.Emote.Name !=  Emojis.white_check_mark && reaction.Emote.Name !=  Emojis.droplet) await orginalMessage.RemoveReactionAsync(reaction.Emote, reaction.User.GetValueOrDefault());
 
             var campaign = await _mediator.Send(new GetCampaignByIdQuery(id));
 
