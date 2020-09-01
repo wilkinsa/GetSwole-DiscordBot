@@ -27,13 +27,16 @@ namespace Application.Workouts
         }
         public async Task<DateTimeOffset?> Handle(QuickFix request, CancellationToken cancellationToken)
         {
-            var campaign = await _dbContext.Campaigns.FirstOrDefaultAsync(c => c.Name == "30 Day Ab Challenge");
+            var data = await _dbContext.Workouts.Where(w => w.WorkoutDate > DateTime.Now).ToListAsync();
 
-            campaign.StartDate = DateTimeOffset.Parse("08/31/2020");
+            foreach (var w in data)
+            {
+                w.WorkoutDate.AddHours(4);
+            }
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            return campaign.StartDate;
+            return data.First().WorkoutDate;
         }
     }
 }
